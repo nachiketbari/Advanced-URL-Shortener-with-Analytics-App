@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortened URL</title>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Your Shortened URL</h1>
+        <p>Original URL: {{ shortened_url.original_url }}</p>
+        <p>Shortened URL: <a href="{% url 'redirect_url' shortened_url.short_code %}">{{ request.build_absolute_uri|slice:":-1" }}{{ shortened_url.short_code }}</a></p>
+        <a href="{% url 'create_shortened_url' %}" class="btn">Create Another</a>
+    </div>
+</body>
+</html>

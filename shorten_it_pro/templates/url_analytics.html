@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Analytics</title>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Your URL Analytics</h1>
+        {% if analytics_data %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Shortcode</th>
+                        <th>Original URL</th>
+                        <th>Access Time</th>
+                        <th>IP Address</th>
+                        <th>User Agent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in analytics_data %}
+                        {% for analytics in data.analytics %}
+                            <tr>
+                                <td>{{ data.url.short_code }}</td>
+                                <td>{{ data.url.original_url }}</td>
+                                <td>{{ analytics.access_time }}</td>
+                                <td>{{ analytics.ip_address }}</td>
+                                <td>{{ analytics.user_agent }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No analytics data available.</p>
+        {% endif %}
+        <a href="{% url 'create_shortened_url' %}" class="btn">Create New Shortened URL</a>
+    </div>
+</body>
+</html>
